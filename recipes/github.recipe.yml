@@ -1,0 +1,58 @@
+# GitHub REST API: users, repositories, issues and pull requests.
+# Written with `api_recipes import` from the description published by GitHub
+# (github/rest-api-description, MIT license), then reduced by hand.
+github:
+  recipe:
+    name: github
+    version: 1.0.0
+    format: 1
+    summary: GitHub REST API, users, repositories, issues and pull requests
+    homepage: https://docs.github.com/en/rest
+  auth:
+    type: bearer                  # authorization = 'Bearer TOKEN'; public data needs none
+  host: api.github.com
+  default_headers:
+    Accept: application/vnd.github+json
+  endpoints:
+    rate_limit:                   # GET /rate_limit
+    user:                         # GET /user, the owner of the token
+      endpoints:
+        repos:                    # GET /user/repos (query: visibility, affiliation, type, sort, direction, per_page, page)
+    users:
+      route: false
+      endpoints:
+        show:                     # GET /users/{username}
+          path: /:username
+        repos:                    # GET /users/{username}/repos (query: type, sort, direction, per_page, page)
+          path: /:username/repos
+    repos:
+      route: false
+      endpoints:
+        show:                     # GET /repos/{owner}/{repo}
+          path: /:owner/:repo
+        contributors:             # GET /repos/{owner}/{repo}/contributors (query: anon, per_page, page)
+          path: /:owner/:repo/contributors
+          ok_code: [200, 204]
+        issues:                   # GET /repos/{owner}/{repo}/issues (query: state, labels, sort, direction, since, per_page, page)
+          path: /:owner/:repo/issues
+          endpoints:
+            create:               # POST /repos/{owner}/{repo}/issues
+              path: ''
+              verb: post
+              ok_code: 201
+            show:                 # GET /repos/{owner}/{repo}/issues/{issue_number}
+              path: /:issue_number
+            comments:             # GET /repos/{owner}/{repo}/issues/{issue_number}/comments (query: since, per_page, page)
+              path: /:issue_number/comments
+              endpoints:
+                create:           # POST /repos/{owner}/{repo}/issues/{issue_number}/comments
+                  path: ''
+                  verb: post
+                  ok_code: 201
+        pulls:                    # GET /repos/{owner}/{repo}/pulls (query: state, head, base, sort, direction, per_page, page)
+          path: /:owner/:repo/pulls
+        releases:
+          path: /:owner/:repo/releases
+          route: false
+          endpoints:
+            latest:               # GET /repos/{owner}/{repo}/releases/latest

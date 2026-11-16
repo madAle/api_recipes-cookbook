@@ -1,0 +1,45 @@
+# JSONPlaceholder: a free fake API with posts, comments, users and todos.
+# Writes are accepted and answered, but nothing is stored.
+jsonplaceholder:
+  recipe:
+    name: jsonplaceholder
+    version: 1.0.0
+    format: 1
+    summary: JSONPlaceholder, a free fake REST API for tests and examples
+    homepage: https://jsonplaceholder.typicode.com
+  auth:
+    type: none
+  host: jsonplaceholder.typicode.com
+  endpoints:
+    posts:                        # GET /posts (query: userId)
+      endpoints:
+        show:                     # GET /posts/{id}
+          path: /:id
+        create:                   # POST /posts
+          path: ''
+          verb: post
+          ok_code: 201
+        replace:                  # PUT /posts/{id}
+          path: /:id
+          verb: put
+        update:                   # PATCH /posts/{id}
+          path: /:id
+          verb: patch
+        delete:                   # DELETE /posts/{id}
+          path: /:id
+          verb: delete
+        comments:                 # GET /posts/{id}/comments
+          path: /:id/comments
+    comments:                     # GET /comments (query: postId)
+    users:                        # GET /users
+      endpoints:
+        show:                     # GET /users/{id}
+          path: /:id
+        posts:                    # GET /users/{id}/posts
+          path: /:id/posts
+        todos:                    # GET /users/{id}/todos
+          path: /:id/todos
+    todos:                        # GET /todos (query: userId, completed)
+      endpoints:
+        show:                     # GET /todos/{id}
+          path: /:id

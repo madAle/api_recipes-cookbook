@@ -1,0 +1,19 @@
+name: Check
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4'
+      - run: gem install api_recipes --pre
+      - run: api_recipes check recipes/*.recipe.yml
+      - name: Every file of recipes is a recipe
+        run: test -z "$(ls recipes | grep -v '\.recipe\.yml$')"

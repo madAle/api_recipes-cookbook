@@ -1,0 +1,35 @@
+# httpbin: a service that answers with what it received. Good for trying
+# api_recipes without an account.
+httpbin:
+  recipe:
+    name: httpbin
+    version: 1.0.0
+    format: 1
+    summary: httpbin, a service that echoes requests, for tests and examples
+    homepage: https://httpbin.org
+  auth:
+    type: bearer                  # only /bearer looks at it
+  host: httpbin.org
+  endpoints:
+    get:                          # GET /get, the query string and the headers it received
+    post:                         # POST /post, the body it received
+      verb: post
+    put:                          # PUT /put
+      verb: put
+    patch:                        # PATCH /patch
+      verb: patch
+    delete:                       # DELETE /delete
+      verb: delete
+    anything:                     # GET /anything, the whole request it received
+    headers:                      # GET /headers
+    ip:                           # GET /ip
+    user_agent:                   # GET /user-agent
+      path: /user-agent
+    uuid:                         # GET /uuid
+    status:                       # GET /status/{code}, answers with that status
+      path: /status/:code
+      on_bad_code: ignore
+    delay:                        # GET /delay/{seconds}, answers after that many seconds (at most 10)
+      path: /delay/:seconds
+      timeout: 15
+    bearer:                       # GET /bearer, 200 with a bearer token and 401 without
