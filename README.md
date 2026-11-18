@@ -26,7 +26,8 @@ describes the commands and the format.
 
 | Recipe | API | Credential |
 | --- | --- | --- |
-| [`github`](recipes/github.recipe.yml) | GitHub REST API: users, repositories, issues, pull requests | `Authorization: Bearer TOKEN`; public data needs none |
+| [`github`](recipes/github.recipe.yml) | GitHub REST API: every operation, 1,281 calls | `Authorization: Bearer TOKEN`; public data needs none |
+| [`github_essentials`](recipes/github_essentials.recipe.yml) | GitHub REST API: the most used calls on users, repositories, issues, pull requests and releases, 14 calls | `Authorization: Bearer TOKEN`; public data needs none |
 | [`httpbin`](recipes/httpbin.recipe.yml) | httpbin, a service that echoes requests | none, except for `bearer` |
 | [`jsonplaceholder`](recipes/jsonplaceholder.recipe.yml) | JSONPlaceholder, a free fake REST API | none |
 
@@ -36,7 +37,8 @@ A version of a recipe is published with the tag `NAME-VERSION`, for example
 `github-1.0.0`. `api_recipes install github` takes the recipe on the main
 branch; `api_recipes install github --version 1.0.0` takes the one at the tag.
 The version in the file and the version in the tag are the same, and a
-published tag is never moved.
+published tag is never moved. Version 1.0.0 of `github` was the small recipe that
+is now called `github_essentials`; from 2.0.0 `github` has every operation.
 
 ## Contributing a recipe
 
