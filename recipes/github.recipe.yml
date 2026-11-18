@@ -4,10 +4,25 @@
 # the Accept header, and a name for the fourteen endpoints that the import had
 # told apart with a number, such as `revision`, `download`, `all_comments`.
 # The small recipe with the most used calls is `github_essentials`.
+#
+# Usage:
+#
+#   github = ApiRecipes.github
+#   github.users.show('octocat').run.data
+#   github.search.repositories(params: { q: 'api language:ruby', per_page: 5 }).run.data
+#   github.repos.issues('rails', 'rails').create(json: { title: 'Found a bug' }).run
+#   github.repos.pulls('rails', 'rails').show(1347).run.data
+#   github.gists.revision('aa5a315d61ae9438b18d', '57a7f021a713b1c5a6a1').run.data
+#
+# The token is given once, in ApiRecipes.configure, as
+# config.values = { github: { authorization: 'Bearer TOKEN' } }, or for one
+# request, as github.with(authorization: 'Bearer TOKEN'). Public data needs
+# none. Every call, with its verb and its address:
+# api_recipes routes github.recipe.yml
 github:
   recipe:
     name: github
-    version: 2.0.0
+    version: 2.0.1
     format: 1
     summary: GitHub REST API, every operation
     homepage: https://docs.github.com/en/rest

@@ -1,9 +1,20 @@
 # JSONPlaceholder: a free fake API with posts, comments, users and todos.
 # Writes are accepted and answered, but nothing is stored.
+#
+# Usage:
+#
+#   placeholder = ApiRecipes.jsonplaceholder
+#   placeholder.posts.run.data
+#   placeholder.posts.show(1).run.data
+#   placeholder.posts.create(json: { title: 'Hello', body: 'First post', userId: 1 }).run.data
+#   placeholder.users.posts(1).run.data
+#   placeholder.todos(params: { completed: true }).run.data
+#
+# Every call, with its verb and its address: api_recipes routes jsonplaceholder.recipe.yml
 jsonplaceholder:
   recipe:
     name: jsonplaceholder
-    version: 1.0.0
+    version: 1.0.1
     format: 1
     summary: JSONPlaceholder, a free fake REST API for tests and examples
     homepage: https://jsonplaceholder.typicode.com

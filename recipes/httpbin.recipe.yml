@@ -1,9 +1,20 @@
 # httpbin: a service that answers with what it received. Good for trying
 # api_recipes without an account.
+#
+# Usage:
+#
+#   httpbin = ApiRecipes.httpbin
+#   httpbin.get(params: { hello: 'world' }).run.data
+#   httpbin.post(json: { hello: 'world' }).run.data
+#   httpbin.headers(headers: { 'X-Request-Id' => 'abc123' }).run.data
+#   httpbin.with(on_bad_code: 'ignore').status(404).run.code
+#   httpbin.with(authorization: 'Bearer TOKEN').bearer.run.data
+#
+# Every call, with its verb and its address: api_recipes routes httpbin.recipe.yml
 httpbin:
   recipe:
     name: httpbin
-    version: 1.0.0
+    version: 1.0.1
     format: 1
     summary: httpbin, a service that echoes requests, for tests and examples
     homepage: https://httpbin.org

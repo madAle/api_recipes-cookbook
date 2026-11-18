@@ -45,10 +45,13 @@ is now called `github_essentials`; from 2.0.0 `github` has every operation.
 1. Write `recipes/NAME.recipe.yml`. The name is made of lowercase letters,
    digits, `-` and `_`, and it is also the name of the API and `recipe.name`.
    `api_recipes import` writes a first draft from an OpenAPI description.
-2. Check it: `api_recipes check recipes/NAME.recipe.yml`. Look at what
+2. Start the file with a comment that says what the API is and has a `Usage`
+   part: a few calls written in Ruby, each on a line that starts with `#   `.
+   `ruby scripts/check_usage.rb recipes` runs them with the requests stubbed.
+3. Check it: `api_recipes check recipes/NAME.recipe.yml`. Look at what
    `api_recipes install ./recipes/NAME.recipe.yml --to /tmp/try` shows: it is
    what everyone who installs the recipe will read.
-3. Open a pull request. Say where the paths and the verbs come from: the page
+4. Open a pull request. Say where the paths and the verbs come from: the page
    of the official documentation, or the OpenAPI description and its license.
 
 What is asked of a recipe:
@@ -66,7 +69,8 @@ What is asked of a recipe:
 - A comment beside each endpoint with the verb, the path and the main query
   parameters helps whoever reads the file.
 
-The CI runs `api_recipes check` on every file of `recipes`.
+The CI runs `api_recipes check` on every file of `recipes`, and the examples of
+every `Usage` comment.
 
 ## Security
 

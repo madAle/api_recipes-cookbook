@@ -4,10 +4,24 @@
 # by hand. Every call has the name it has in `github`, the recipe with every
 # operation, so that moving from one to the other changes only the name of the
 # api.
+#
+# Usage:
+#
+#   github = ApiRecipes.github_essentials
+#   github.users.show('octocat').run.data
+#   github.users.repos('octocat', params: { type: 'owner', per_page: 5 }).run.data
+#   github.repos.issues('rails', 'rails').create(json: { title: 'Found a bug' }).run
+#   github.repos.issues('rails', 'rails').comments(1347).create(json: { body: 'Thanks' }).run
+#
+# The token is given once, in ApiRecipes.configure, as
+# config.values = { github_essentials: { authorization: 'Bearer TOKEN' } },
+# or for one request, as github.with(authorization: 'Bearer TOKEN'). Public
+# data needs none. Every call, with its verb and its address:
+# api_recipes routes github_essentials.recipe.yml
 github_essentials:
   recipe:
     name: github_essentials
-    version: 1.0.0
+    version: 1.0.1
     format: 1
     summary: GitHub REST API, the most used calls on users, repositories, issues and pull requests
     homepage: https://docs.github.com/en/rest
