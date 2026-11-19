@@ -44,7 +44,9 @@ is now called `github_essentials`; from 2.0.0 `github` has every operation.
 
 1. Write `recipes/NAME.recipe.yml`. The name is made of lowercase letters,
    digits, `-` and `_`, and it is also the name of the API and `recipe.name`.
-   `api_recipes import` writes a first draft from an OpenAPI description.
+   From an OpenAPI description, `api_recipes import openapi.yml --name NAME
+   --output recipes/NAME.recipe.yml` writes a first draft, with the key
+   `recipe` already in it (api_recipes 3.0.0.beta5 or later).
 2. Start the file with a comment that says what the API is and has a `Usage`
    part: a few calls written in Ruby, each on a line that starts with `#   `.
    `ruby scripts/check_usage.rb recipes` runs them with the requests stubbed.
